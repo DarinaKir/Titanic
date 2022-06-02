@@ -32,4 +32,6 @@ public class Constants {
 
     public static final int MAX_FARE = 600;
     public static final int MAX_AGE = 120;
+
+    public static final int AMOUNT_GROUPS_AGE = 6;
 }

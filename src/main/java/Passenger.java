@@ -15,7 +15,6 @@ public class Passenger {
     private String cabin;
     private char embarked;
 
-
     public Passenger(String text) {
         String[] dataItem = text.split(",");
 
@@ -47,7 +46,6 @@ public class Passenger {
         return fullName;
     }
 
-
     public String toString() {
         return
                 +passengerId +
@@ -72,9 +70,9 @@ public class Passenger {
         return isInRange;
     }
 
-    public boolean isNameCorrect(String name) {
+    public boolean isNameExist(String name) {
         boolean isCorrect = false;
-        if (getFormattedName().equals(name) || name.equals("")) {
+        if (getFormattedName().contains(name)) {
             isCorrect = true;
         }
         return isCorrect;
@@ -112,18 +110,26 @@ public class Passenger {
         return isSame;
     }
 
-    public boolean isSameTicketNumber(int ticketNumber) {
+    public boolean isSameTicketNumber(int ticket) {
         boolean isSame = false;
-        int thisTicket;
-        String[] splitTicket = this.ticket.split(" ");
-        try {
-            thisTicket = Integer.parseInt(splitTicket[splitTicket.length - 1]);
-        } catch (NumberFormatException e) {
-            thisTicket = -1;
-        }
-        if (ticketNumber == thisTicket || ticketNumber == -1) {
-            isSame = true;
-        }
+        if (ticket != -1){
+            String ticketNumber = "" + ticket;
+            isSame = (this.ticket.contains(ticketNumber));
+        } else isSame = true;
+//        int thisTicket;
+//        try {
+//            if (this.ticket.contains(" ")){
+//                String[] splitTicket = this.ticket.split(" ");
+//                thisTicket = Integer.parseInt(splitTicket[splitTicket.length - 1]);
+//            }else {
+//                thisTicket = Integer.parseInt(this.ticket);
+//            }
+//        } catch (NumberFormatException e) {
+//            thisTicket = -1;
+//        }
+//        if (ticket == thisTicket || ticket == -1) {
+//            isSame = true;
+//        }
         return isSame;
     }
 
@@ -137,24 +143,28 @@ public class Passenger {
 
     public boolean isSameCabin(int cabin) {
         boolean isSame = false;
-        String cabinNumber = "";
-        for (int i = 1; i < this.cabin.length(); i++) {
-            if (Character.isDigit(this.cabin.charAt(i))) {
-                cabinNumber += this.cabin.charAt(i);
-            } else {
-                break;
-            }
-        }
-        int cabinNumberInt;
-        try {
-            cabinNumberInt = Integer.parseInt(cabinNumber);
-        }catch (NumberFormatException e) {
-            cabinNumberInt = -1;
-        }
-
-        if (cabin == cabinNumberInt || cabin == -1) {
-            isSame = true;
-        }
+        if (cabin!=-1){
+            String cabinNumber = ""+cabin;
+            isSame = (this.cabin.contains(cabinNumber));
+        }else isSame = true;
+//        String cabinNumber = "";
+//        for (int i = 1; i < this.cabin.length(); i++) {
+//            if (Character.isDigit(this.cabin.charAt(i))) {
+//                cabinNumber += this.cabin.charAt(i);
+//            } else {
+//                break;
+//            }
+//        }
+//        int cabinNumberInt;
+//        try {
+//            cabinNumberInt = Integer.parseInt(cabinNumber);
+//        }catch (NumberFormatException e) {
+//            cabinNumberInt = -1;
+//        }
+//
+//        if (cabin == cabinNumberInt || cabin == -1) {
+//            isSame = true;
+//        }
         return isSame;
     }
 
@@ -181,9 +191,5 @@ public class Passenger {
 
     public boolean hasRelative(){
         return ((this.parch + this.sibSp) > 0);
-    }
-
-    public double getFare() {
-        return fare;
     }
 }
