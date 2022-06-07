@@ -34,4 +34,10 @@ public class Constants {
     public static final int MAX_AGE = 120;
 
     public static final int AMOUNT_GROUPS_AGE = 6;
+
+    public static final int FIRST_TICKET_FARE_MIN = 0;
+    public static final int FIRST_TICKET_FARE_MAX = 10;
+    public static final int SECOND_TICKET_FARE_MIN = 11;
+    public static final int SECOND_TICKET_FARE_MAX = 30;
+    public static final int THIRD_TICKET_FARE_MIN = 31;
 }

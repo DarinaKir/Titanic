@@ -316,52 +316,44 @@ public class MainPanel extends JPanel {
                 minId = Integer.parseInt(this.idMinTextField.getText());
             } catch (NumberFormatException exception) {
                 minId = 0;
-                System.out.println(exception.getMessage());
             }
             try {
                 maxId = Integer.parseInt(this.idMaxTextField.getText());
             } catch (NumberFormatException exception) {
                 maxId = this.passengerList.size();
-                System.out.println(exception.getMessage());
             }
 
             try {
                 sibSp = Integer.parseInt(this.sibSpTextField.getText());
             } catch (NumberFormatException exception) {
-                System.out.println(exception.getMessage());
                 sibSp = -1;
             }
             try {
                 parch = Integer.parseInt(this.parchTextField.getText());
             } catch (NumberFormatException exception) {
-                System.out.println(exception.getMessage());
                 parch = -1;
             }
 
             try {
                 ticketNumber = Integer.parseInt(this.ticketTextField.getText());
             } catch (NumberFormatException exception) {
-                System.out.println(exception.getMessage());
                 ticketNumber = -1;
             }
 
             try {
                 minFare = Integer.parseInt(this.fareMinTextField.getText());
             } catch (NumberFormatException exception) {
-                System.out.println(exception.getMessage());
                 minFare = 0;
             }
             try {
                 maxFare = Integer.parseInt(this.fareMaxTextField.getText());
             } catch (NumberFormatException exception) {
-                System.out.println(exception.getMessage());
                 maxFare = Constants.MAX_FARE;
             }
 
             try {
                 cabinNumber = Integer.parseInt(this.cabinTextField.getText());
             } catch (NumberFormatException exception) {
-                System.out.println(exception.getMessage());
                 cabinNumber = -1;
             }
 
@@ -387,7 +379,6 @@ public class MainPanel extends JPanel {
                     .filter(passenger -> passenger.isSameEmbarked(this.embarkedChoice))
                     .sorted(Comparator.comparing(Passenger::getFormattedName))
                     .collect(Collectors.toList());
-            System.out.println(filteredList);
 
             int allFiltered = filteredList.size();
             long filteredSurvive = filteredList.stream().filter(Passenger::isSurvived).count();
@@ -433,9 +424,9 @@ public class MainPanel extends JPanel {
             statisticText += "\n" + "Doesn't have relatives: " + relativeStatistics(false) + "%" + "\n";
 
             statisticText += "\n" + "Survival rates by ticket fare";
-            statisticText += "\n" + "less then 10 pounds: " + fareStatistics(0, 10) + "%";
-            statisticText += "\n" + "11-30 pounds : " + fareStatistics(11, 30) + "%";
-            statisticText += "\n" + "30+ pounds : " + fareStatistics(30, 800000) + "%" + "\n";
+            statisticText += "\n" + "less then 10 pounds: " + fareStatistics(Constants.FIRST_TICKET_FARE_MIN, Constants.FIRST_TICKET_FARE_MAX) + "%";
+            statisticText += "\n" + "11-30 pounds : " + fareStatistics(Constants.SECOND_TICKET_FARE_MIN, Constants.SECOND_TICKET_FARE_MAX) + "%";
+            statisticText += "\n" + "30+ pounds : " + fareStatistics(Constants.THIRD_TICKET_FARE_MIN, Constants.MAX_FARE) + "%" + "\n";
 
             statisticText += "\n" + "Survival rates by port";
             statisticText += "\n" + "C : " + embarkedStatistics('C') + "%";
